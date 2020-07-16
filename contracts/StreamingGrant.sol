@@ -24,37 +24,30 @@ Questions:
 */
 
 // send ETH however the fuck (stream or one-off)
-function() payable {
-    totalETHReceived += msg.value;
+function() payable noReentrancy {
+
+    for (var i=0; i<recipientsArray.length; i++) {
+        recipient = recipients[recipients[i]]
+        shareOfEth = msg.value * recipients[recipient].fraction / totalFraction
+        recipient.transfer(amount)
+    }
 }
 
-Struct Recipient {
-    uint256 withdrawals;
-    uint256 fraction;
-}
+uint256 totalFraction;
+mapping (address => uint) recipientFraction;
+address[] recipientsAddresses; 
 
-constructor (address[] recipients, uint256[] fractions) {
+constructor (address[] _recipientAddresses, uint256[] fractions) {
     require(recipients.length == fractions.length);
 
-    uint totalFractions;
-
-    for (var i=0; i<recipients.length; i++) {
+    for (var i=0; i<recipientAddresses.length; i++) {
         // save recipeints
+        recipientFraction[recipientAddress[i]] = fraction[i];
+        totalFractions += fraction[i];
     }
 
-    // make sure everything = 100%
+    recipientsAddresses = _recipientAddresses;
 }
-
-// anyone can call to give the recipient their fair share of totalETHReceived
-function redeem(address recipient, uint amount) {
-    myShareOfEth = totalETHreceived / myFraction;
-    avialableToWithdraw = myShareOfETH - withdrawals[recipient]
-    require (amount <= availableToWithdraw)
-
-    withdrawals[recipient] += amount
-    recipient.transfer(amount)
-}
-
 
 
 
