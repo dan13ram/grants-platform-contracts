@@ -5,11 +5,11 @@ import "../interfaces/IManager.sol";
 
 
 /**
- * @title Grants Spec Abstract Contract.
- * @dev Grant request, funding, and management.
+ * @title Manager State.
+ * @dev Manager getter, setter, and helpers.
  * @author @NoahMarconi @ameensol @JFickel @ArnaudBrousseau
  */
-abstract contract AbstractManager is IManager {
+abstract contract Manager is IManager {
 
     /*----------  Globals  ----------*/
 

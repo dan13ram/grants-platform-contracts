@@ -7,6 +7,9 @@ module.exports = {
   // onIstanbulComplete: async function(config){
   //   shell.rm('-rf', './typechain'); // Clean up at the end
   // }
+  skipFiles: [
+    'shared/libraries/abdk-libraries/ABDKMathQuad.sol'
+  ],
   providerOptions: {
     // gasLimit: 0xfffffffffff,
     // testrpcOptions: '-p 8555 -l 0xfffffffffff'

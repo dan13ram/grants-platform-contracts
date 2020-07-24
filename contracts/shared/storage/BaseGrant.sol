@@ -97,6 +97,18 @@ abstract contract BaseGrant is IBaseGrant {
         totalPaid = value;
     }
 
+    function setContractExpiration(uint256 value)
+        internal
+    {
+        contractExpiration = value;
+    }
+
+    function setCurrency(address value)
+        internal
+    {
+        currency = value;
+    }
+
     function setUri(bytes memory value)
         internal
     {
