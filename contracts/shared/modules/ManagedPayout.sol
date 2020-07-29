@@ -3,20 +3,32 @@ pragma solidity >=0.6.8 <0.7.0;
 
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 import "../libraries/Percentages.sol";
-import "../storage/AbstractGrantee.sol";
-import "../interfaces/IManager.sol";
-import "../interfaces/IFunding.sol";
-import "../storage/AbstractBaseGrant.sol";
-import "../interfaces/IGranteeAllocation.sol";
+import "../storage/Manager.sol";
+import "./GranteeAllocation.sol";
+import "../storage/BaseGrant.sol";
+import "./GranteeConstructor.sol";
 
 
 /**
- * @title Managed Payout Abstract Contract.
+ * @title Managed Payout Contract.
  * @dev Handles approval of grantee payouts.
  * @author @NoahMarconi @ameensol @JFickel @ArnaudBrousseau
  */
-abstract contract ManagedPayout is IManager, IFunding, IGranteeAllocation, AbstractBaseGrant, AbstractGrantee {
+abstract contract ManagedPayout is Manager, BaseGrant, GranteeAllocation {
     using SafeMath for uint256;
+
+
+    /*----------  Constructor  ----------*/
+
+    constructor(
+        address[] memory _grantees,
+        uint256[] memory _amounts,
+        bool _percentageBased
+    )
+        public
+        GranteeAllocation(_grantees, _amounts, _percentageBased)
+    { }
+
 
     /*----------  Events  ----------*/
 

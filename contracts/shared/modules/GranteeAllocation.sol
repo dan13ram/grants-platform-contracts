@@ -2,9 +2,9 @@
 pragma solidity >=0.6.8 <0.7.0;
 
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
-import "../interfaces/IGrantee.sol";
-import "../interfaces/IFunding.sol";
 import "../interfaces/IGranteeAllocation.sol";
+import "./GranteeConstructor.sol";
+import "../storage/Funding.sol";
 import "../libraries/Percentages.sol";
 
 
@@ -13,8 +13,20 @@ import "../libraries/Percentages.sol";
  * @dev Grant request, funding, and management.
  * @author @NoahMarconi @ameensol @JFickel @ArnaudBrousseau
  */
-abstract contract GranteeAllocation is IGrantee, IGranteeAllocation, IFunding {
+contract GranteeAllocation is GranteeConstructor, Funding, IGranteeAllocation {
     using SafeMath for uint256;
+
+
+    /*----------  Constructor  ----------*/
+
+    constructor(
+        address[] memory _grantees,
+        uint256[] memory _amounts,
+        bool _percentageBased
+    )
+        public
+        GranteeConstructor(_grantees, _amounts, _percentageBased)
+    { }
 
     /*----------  Public Methods  ----------*/
 
@@ -23,7 +35,7 @@ abstract contract GranteeAllocation is IGrantee, IGranteeAllocation, IFunding {
      * @param grantee's address.
      */
     function remainingAllocation(address grantee)
-        public
+        external
         override
         view
         returns(uint256)

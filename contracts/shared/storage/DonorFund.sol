@@ -4,11 +4,10 @@ pragma solidity >=0.6.8 <0.7.0;
 import "../interfaces/IDonorFund.sol";
 
 /**
- * @title Grants Spec Abstract Contract.
- * @dev Grant request, funding, and management.
+ * @title Donor Fund Contract.
  * @author @NoahMarconi
  */
-abstract contract AbstractDonorFund is IDonorFund {
+abstract contract DonorFund is IDonorFund {
 
     /*----------  Globals  ----------*/
 

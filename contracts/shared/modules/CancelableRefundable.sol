@@ -2,14 +2,12 @@
 pragma solidity >=0.6.8 <0.7.0;
 
 import "./Refundable.sol";
-import "../storage/AbstractBaseGrant.sol";
-import "../interfaces/IManager.sol";
 
 /**
  * @title Cancelable and Refundable Grant.
  * @author @NoahMarconi @ameensol @JFickel @ArnaudBrousseau
  */
-abstract contract CancelableRefundable is IManager, Refundable, AbstractBaseGrant  {
+contract CancelableRefundable is Refundable  {
 
     /*----------  Events  ----------*/
 

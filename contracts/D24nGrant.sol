@@ -5,11 +5,7 @@ pragma solidity >=0.6.8 <0.7.0;
 
 import "./shared/libraries/Percentages.sol";
 import "./shared/interfaces/ITrustedToken.sol";
-import "./shared/modules/GranteeConstructor.sol";
-import "./shared/storage/Funding.sol";
-import "./shared/storage/BaseGrant.sol";
-import "./shared/storage/Manager.sol";
-
+import "./shared/modules/ManagedPayout.sol";
 
 
 /**
@@ -21,7 +17,7 @@ import "./shared/storage/Manager.sol";
  *      Percentage based allocation (y)
  * @author @NoahMarconi
  */
-contract D24nGrant is GranteeConstructor, Funding, BaseGrant, Manager  {
+contract D24nGrant is ManagedPayout {
 
 
     /*----------  Constructor  ----------*/
@@ -42,7 +38,7 @@ contract D24nGrant is GranteeConstructor, Funding, BaseGrant, Manager  {
         bytes memory _extraData
     )
         public
-        GranteeConstructor(_grantees, _amounts, true)
+        ManagedPayout(_grantees, _amounts, true)
     {
 
         address _manager;            //  _manager Multisig or EOA address of grant manager.
@@ -78,6 +74,5 @@ contract D24nGrant is GranteeConstructor, Funding, BaseGrant, Manager  {
         setManager(_manager);
 
     }
-
 
 }

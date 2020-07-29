@@ -19,13 +19,15 @@ interface IDonorRefund {
 
     /*----------  Public Getters  ----------*/
 
-    /**
-     * @dev Get Donor refunded amount by address.
-     * @param donor address of donor to get.
-     */
+    function getTotalRefunded()
+        external
+        view
+        returns(uint256);
+
     function getDonorRefunded(address donor)
         external
         view
         returns(uint256);
+
 
 }
